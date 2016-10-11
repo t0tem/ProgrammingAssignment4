@@ -65,10 +65,8 @@ subjglobal <- rbind(subjtrain, subjtest)
 names(subjglobal) <- "subjcode"
 
 ## step 4
-##Creating the first tidy data set with appropriate labelsand descriptive variable names
-...
-
-
+##Creating the first tidy data set with appropriate labels and descriptive variable names
+tidy1 <- cbind(subjglobal, yglobal1[2],xMeanStd)
 
 
 
