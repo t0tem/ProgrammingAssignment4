@@ -68,6 +68,10 @@ names(subjglobal) <- "subjcode"
 ##Creating the first tidy data set with appropriate labels and descriptive variable names
 tidy1 <- cbind(subjglobal, yglobal1[2],xMeanStd)
 
+## step 5
+##Creating a second, independent tidy data set 
+##with the average of each variable for each activity and each subject
+
 
 
 
