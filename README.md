@@ -62,4 +62,5 @@ Final script is in the file `run_analysis.R`. It does following:
 
 at the end 2 data sets are created:
 * `tidy1` (class "data.frame") - answering step 4 of assignment
-* `tidy2` (class "tbl_df", grouped df) - answering step 5 of assignment
+* `tidy2` (class "tbl_df", grouped df) - answering step 5 of assignment (and then 
+written to local file 'tidy2.txt')

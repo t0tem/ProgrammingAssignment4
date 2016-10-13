@@ -80,3 +80,6 @@ tidy2 <- tidy1 %>% group_by(subjcode, actlabel) %>% summarize_each(funs(mean))
 
 #cleaning up to leave only final data sets in workspace
 rm(list=ls()[-match(c("tidy1", "tidy2"), ls())])
+
+#writing tidy2 to txt
+write.table(tidy2, file="tidy2.txt", row.names=FALSE)
