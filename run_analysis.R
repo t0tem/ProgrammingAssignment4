@@ -7,6 +7,8 @@
 
 ## step 0
 ##importing data
+## Data set should be stored in the folder ~/Dataset
+
 xtrain <- read.table("Dataset/train/X_train.txt")
 ytrain <- read.table("Dataset/train/y_train.txt")
 xtest <- read.table("Dataset/test/X_test.txt")
@@ -45,10 +47,9 @@ names(yglobal)[1] <- names(act_names)[1] <- "actcode"
 names(act_names)[2] <- "actlabel"
 
 #merging activity codes with labels using 'join' from 'plyr'
-#solution #2 from http://stackoverflow.com/a/15307710/6730044
+#solution 2 from http://stackoverflow.com/a/15307710/6730044
 
 library(plyr)
-
 yglobal1 <- plyr::join(yglobal, act_names, by="actcode")
 
 #checking if the order of records is still ok. to do this we check if 
@@ -66,33 +67,16 @@ names(subjglobal) <- "subjcode"
 
 ## step 4
 ##Creating the first tidy data set with appropriate labels and descriptive variable names
-tidy1 <- cbind(subjglobal, yglobal1[2],xMeanStd)
+tidy1 <- cbind(subjglobal, yglobal1[2], xMeanStd)
 
 ## step 5
 ##Creating a second, independent tidy data set 
 ##with the average of each variable for each activity and each subject
+##using 'pipes' from 'dplyr'
 
 library(dplyr)
 
-##grouping by subject and activity
-by_subj_act <- group_by(tidy1, subjcode, actlabel)
+tidy2 <- tidy1 %>% group_by(subjcode, actlabel) %>% summarize_each(funs(mean))
 
-#need to rename data variables as 'summarize' doesn't work with the names like
-# tBodyAcc-mean()-X etc..
-
-#making a list of dummy var names
-temp_names <- sapply(3:length(names(by_subj_act)), function(x){paste("v",x, sep="")})
-names(by_subj_act)[3:length(names(by_subj_act))] <- temp_names
-
-test_tidy2 <- summarize(by_subj_act, mean1 = mean(v3, na.rm=TRUE))
-
-head(test_tidy2, n = 20)
-
-
-
-
-
-
-
-
-
+#cleaning up to leave only final data sets in workspace
+rm(list=ls()[-match(c("tidy1", "tidy2"), ls())])
