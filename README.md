@@ -60,6 +60,6 @@ Final script is in the file `run_analysis.R`. It does following:
 4. Appropriately labels the data set with descriptive variable names.
 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-at the end 2 data sets are created:
-`tidy1` (class "data.frame") - answering step 4 of assignment
-`tidy2` (class "tbl_df", grouped df) - answering step 5 of assignment
+  at the end 2 data sets are created:
+  `tidy1` (class "data.frame") - answering step 4 of assignment
+  `tidy2` (class "tbl_df", grouped df) - answering step 5 of assignment
